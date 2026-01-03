@@ -1,0 +1,103 @@
+app:
+  title: AI Accelerators Developer Portal
+  baseUrl: http://localhost:7007
+  support:
+    url: https://github.com/htec/ai-accelerators/issues
+    items:
+      - title: Support
+        icon: email
+        links:
+          - url: mailto:ai-platform@htec.com
+            title: Email Support
+
+organization:
+  name: HTEC AI Platform
+
+backend:
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+
+integrations:
+  # GitHub integration (optional for local development)
+  # Commented out for local-only setup
+  # github:
+  #   - host: github.com
+  #     token: ${GITHUB_TOKEN}
+
+proxy:
+  '/techdocs':
+    target: '${TECHDOCS_STORAGE_URL}'
+    allowedMethods: ['GET']
+  '/api/proxy/github':
+    target: 'https://api.github.com'
+    allowedMethods: ['GET']
+    headers:
+      Authorization: 'token ${GITHUB_TOKEN}'
+      Accept: 'application/vnd.github.v3.raw'
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'local'
+  publisher:
+    type: 'localFilesystem'
+    localPublishPath: './techdocs'
+  legacyUseCaseSensitiveTripletPaths: false
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
+    # Templates - using local file paths
+    - type: file
+      target: ../../templates/rag-api/catalog-info.yaml
+    # SDK Modules - using local file paths
+    - type: file
+      target: ../../sdk/src/accelerators/llm/catalog-info.yaml
+    - type: file
+      target: ../../sdk/src/accelerators/vectorstore/catalog-info.yaml
+    - type: file
+      target: ../../sdk/src/accelerators/embeddings/catalog-info.yaml
+    - type: file
+      target: ../../sdk/src/accelerators/observability/catalog-info.yaml
+    - type: file
+      target: ../../sdk/src/accelerators/config/catalog-info.yaml
+    # Infrastructure Modules - using local file paths
+    - type: file
+      target: ../../infra/modules/cloud-run/catalog-info.yaml
+
+auth:
+  environment: development
+  providers:
+    # GitHub auth (optional for local development)
+    # Uncomment if you want GitHub authentication
+    # github:
+    #   development:
+    #     clientId: ${GITHUB_CLIENT_ID}
+    #     clientSecret: ${GITHUB_CLIENT_SECRET}
+    # Guest provider for local development (no auth required)
+    guest:
+      development:
+        allow: true
+
+scaffolder:
+  defaultAuthor:
+    name: AI Platform Team
+    email: ai-platform@htec.com
+  defaultCommitMessage: 'chore: created from Backstage software template'
+
+permission:
+  enabled: true
+  policy:
+    default: allow
+

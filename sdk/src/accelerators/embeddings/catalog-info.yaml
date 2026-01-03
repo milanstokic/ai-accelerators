@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accelerators-embeddings
+  title: Embeddings Module
+  description: Generate embeddings for text content (OpenAI, Sentence Transformers)
+  tags:
+    - sdk
+    - embeddings
+    - python
+    - ai
+  annotations:
+    backstage.io/techdocs-ref: dir:../../../../docs/sdk
+    backstage.io/source-location: url:file://../../../../sdk/src/accelerators/embeddings
+spec:
+  type: library
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators-sdk
+  partOf: component:accelerators-sdk
+

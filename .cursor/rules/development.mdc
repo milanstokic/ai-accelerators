@@ -1,0 +1,4 @@
+---
+alwaysApply: true
+---
+Do not wait for user input of to start the next plan phase.

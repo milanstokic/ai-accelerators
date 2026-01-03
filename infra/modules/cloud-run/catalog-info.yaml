@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cloud-run-module
+  title: Cloud Run Terraform Module
+  description: Reusable Terraform module for deploying services to Google Cloud Run
+  tags:
+    - infrastructure
+    - terraform
+    - gcp
+    - cloud-run
+  annotations:
+    backstage.io/techdocs-ref: dir:./docs
+    backstage.io/source-location: url:file://../../../../infra/modules/cloud-run
+spec:
+  type: terraform-module
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators-infrastructure
+  dependsOn:
+    - component:rag-api-template
+

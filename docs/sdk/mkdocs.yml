@@ -1,0 +1,19 @@
+site_name: AI Accelerators SDK
+site_description: Unified SDK for LLM, Vector Store, Embeddings, Observability, and Configuration
+site_url: https://github.com/htec/ai-accelerators
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Modules:
+    - LLM: modules/llm.md
+    - Vector Store: modules/vectorstore.md
+    - Embeddings: modules/embeddings.md
+    - Observability: modules/observability.md
+    - Config: modules/config.md
+  - Examples: examples.md
+  - API Reference: api-reference.md
+
+plugins:
+  - techdocs-core
+

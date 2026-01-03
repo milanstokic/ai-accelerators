@@ -1,0 +1,16 @@
+site_name: RAG API Template
+site_description: Production-ready RAG (Retrieval-Augmented Generation) API template
+site_url: https://github.com/htec/ai-accelerators
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Configuration: configuration.md
+  - API Reference: api-reference.md
+  - Deployment: deployment.md
+  - Customization: customization.md
+  - Troubleshooting: troubleshooting.md
+
+plugins:
+  - techdocs-core
+

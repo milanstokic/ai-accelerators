@@ -1,0 +1,15 @@
+site_name: Infrastructure Documentation
+site_description: Infrastructure modules for deploying AI Accelerators to GCP
+site_url: https://github.com/htec/ai-accelerators
+
+nav:
+  - Home: index.md
+  - GCP Setup: gcp-setup.md
+  - Terraform Guide: terraform-guide.md
+  - Modules:
+    - Cloud Run: modules/cloud-run.md
+  - Environments: environments.md
+
+plugins:
+  - techdocs-core
+

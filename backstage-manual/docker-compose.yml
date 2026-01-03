@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backstage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7007:7007"
+    environment:
+      - NODE_ENV=development
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID:-}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET:-}
+    volumes:
+      - ./app-config.yaml:/app/app-config.yaml
+      - ./techdocs:/app/techdocs
+      - backstage-data:/app/data
+    networks:
+      - backstage-network
+
+networks:
+  backstage-network:
+    driver: bridge
+
+volumes:
+  backstage-data:
+

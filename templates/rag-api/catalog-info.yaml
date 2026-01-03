@@ -1,0 +1,29 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rag-api-template
+  title: RAG API Template
+  description: Production-ready RAG (Retrieval-Augmented Generation) API template for building knowledge base applications
+  tags:
+    - rag
+    - template
+    - fastapi
+    - python
+    - ai
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/source-location: url:file://../../templates/rag-api
+    github.com/project-slug: htec/ai-accelerators
+spec:
+  type: template
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators
+  providesApis:
+    - rag-api
+  dependsOn:
+    - component:accelerators-llm
+    - component:accelerators-vectorstore
+    - component:accelerators-embeddings
+    - component:accelerators-observability
+

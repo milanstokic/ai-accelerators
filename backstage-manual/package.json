@@ -1,0 +1,22 @@
+{
+  "name": "ai-accelerators-backstage",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn workspace backend start\" \"yarn workspace frontend start\"",
+    "build": "yarn workspace backend build && yarn workspace frontend build",
+    "lint": "yarn workspace backend lint && yarn workspace frontend lint",
+    "test": "yarn workspace backend test && yarn workspace frontend test",
+    "setup": "./scripts/setup-local.sh",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+

@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+Product Requirements
+
+All product requirements are stored in product-documentation/prds folder.
+Make sure to always check the files.
+If the user explicitly references a file use it for feature development.
+If new feature request without a product-documentation file is requested create a new document.
+Always make sure that new changes are not conflicting with the existing ones. 

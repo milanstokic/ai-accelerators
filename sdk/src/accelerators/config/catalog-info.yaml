@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accelerators-config
+  title: Config Module
+  description: Configuration management with environment variable support and Pydantic Settings
+  tags:
+    - sdk
+    - config
+    - python
+  annotations:
+    backstage.io/techdocs-ref: dir:../../../../docs/sdk
+    backstage.io/source-location: url:file://../../../../sdk/src/accelerators/config
+spec:
+  type: library
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators-sdk
+  partOf: component:accelerators-sdk
+

@@ -1,0 +1,63 @@
+app:
+  title: AI Accelerators Developer Portal
+  baseUrl: https://backstage.your-domain.com
+  support:
+    url: https://github.com/htec/ai-accelerators/issues
+
+backend:
+  baseUrl: https://backstage.your-domain.com
+  listen:
+    port: 7007
+    host: 0.0.0.0
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      database: ${POSTGRES_DATABASE}
+      ssl:
+        rejectUnauthorized: false
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+techdocs:
+  builder: 'external'
+  generator:
+    runIn: 'local'
+  publisher:
+    type: 'googleGcs'
+    googleGcs:
+      bucketName: ${TECHDOCS_BUCKET}
+      projectId: ${GCP_PROJECT_ID}
+      credentials: ${GOOGLE_APPLICATION_CREDENTIALS}
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
+    - type: url
+      target: https://github.com/htec/ai-accelerators/blob/main/catalog/catalog-info.yaml
+
+auth:
+  environment: production
+  providers:
+    oidc:
+      production:
+        metadataUrl: ${OIDC_METADATA_URL}
+        clientId: ${OIDC_CLIENT_ID}
+        clientSecret: ${OIDC_CLIENT_SECRET}
+        prompt: auto
+
+permission:
+  enabled: true
+  policy:
+    default: allow
+

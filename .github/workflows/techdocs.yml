@@ -1,0 +1,49 @@
+name: TechDocs
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'docs/**'
+      - 'templates/**/catalog-info.yaml'
+      - 'sdk/**/catalog-info.yaml'
+      - 'infra/**/catalog-info.yaml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'docs/**'
+      - 'templates/**/catalog-info.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install TechDocs CLI
+        run: |
+          npm install -g @techdocs/cli
+
+      - name: Generate TechDocs
+        run: |
+          techdocs-cli generate --no-docker --mkdocs-config-file backstage/mkdocs.yml --output-dir ./techdocs
+
+      - name: Upload to GCS
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+          TECHDOCS_BUCKET: ${{ secrets.TECHDOCS_BUCKET }}
+        run: |
+          techdocs-cli publish --publisher-type googleGcs \
+            --storage-name ${{ secrets.TECHDOCS_BUCKET }} \
+            --entity default/component/rag-api-template
+
+      - name: Update Catalog
+        run: |
+          # Trigger catalog refresh in Backstage
+          curl -X POST ${{ secrets.BACKSTAGE_URL }}/api/catalog/refresh
+

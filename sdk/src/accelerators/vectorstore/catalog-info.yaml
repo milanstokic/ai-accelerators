@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accelerators-vectorstore
+  title: Vector Store Module
+  description: Unified interface for vector database operations (Qdrant, PostgreSQL with pgvector)
+  tags:
+    - sdk
+    - vector-store
+    - python
+    - ai
+  annotations:
+    backstage.io/techdocs-ref: dir:../../../../docs/sdk
+    backstage.io/source-location: url:file://../../../../sdk/src/accelerators/vectorstore
+spec:
+  type: library
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators-sdk
+  partOf: component:accelerators-sdk
+  dependsOn:
+    - component:accelerators-embeddings
+

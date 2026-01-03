@@ -1,0 +1,74 @@
+site_name: AI Accelerators Documentation
+site_description: Documentation for AI Accelerators platform
+site_url: https://backstage.your-domain.com/docs
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - getting-started/index.md
+    - getting-started/prerequisites.md
+    - getting-started/installation.md
+    - getting-started/quickstart.md
+    - getting-started/first-rag-app.md
+    - getting-started/local-development.md
+    - getting-started/faq.md
+  - Templates:
+    - templates/rag-api/index.md
+    - templates/rag-api/quickstart.md
+    - templates/rag-api/configuration.md
+    - templates/rag-api/api-reference.md
+    - templates/rag-api/customization.md
+    - templates/rag-api/deployment.md
+    - templates/rag-api/troubleshooting.md
+  - SDK:
+    - sdk/index.md
+    - sdk/llm.md
+    - sdk/vectorstore.md
+    - sdk/embeddings.md
+    - sdk/observability.md
+    - sdk/config.md
+  - Infrastructure:
+    - infrastructure/index.md
+    - infrastructure/gcp-setup.md
+    - infrastructure/terraform-guide.md
+  - Architecture:
+    - architecture/index.md
+    - architecture/system-overview.md
+  - Contributing:
+    - contributing/index.md
+
+plugins:
+  - search
+  - mkdocs-material
+  - codehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
+

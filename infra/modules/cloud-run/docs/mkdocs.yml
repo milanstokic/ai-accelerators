@@ -1,0 +1,14 @@
+site_name: Cloud Run Terraform Module
+site_description: Reusable Terraform module for deploying services to Google Cloud Run
+site_url: https://github.com/htec/ai-accelerators
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Variables: variables.md
+  - Outputs: outputs.md
+  - Examples: examples.md
+
+plugins:
+  - techdocs-core
+

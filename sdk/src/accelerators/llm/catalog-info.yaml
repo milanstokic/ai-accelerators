@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accelerators-llm
+  title: LLM Module
+  description: Unified interface for LLM providers (Anthropic, OpenAI, Google, Ollama)
+  tags:
+    - sdk
+    - llm
+    - python
+    - ai
+  annotations:
+    backstage.io/techdocs-ref: dir:../../../../docs/sdk
+    backstage.io/source-location: url:file://../../../../sdk/src/accelerators/llm
+spec:
+  type: library
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators-sdk
+  partOf: component:accelerators-sdk
+
