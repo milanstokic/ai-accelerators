@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ai-accelerators-infrastructure
+  title: AI Accelerators Infrastructure
+  description: Infrastructure modules for deploying AI Accelerators components to GCP
+  tags:
+    - infrastructure
+    - terraform
+    - gcp
+    - ai
+  annotations:
+    # Systems don't typically have TechDocs - documentation is in component entities
+spec:
+  domain: ai-platform
+  owner: ai-platform-team
+  type: infrastructure
+

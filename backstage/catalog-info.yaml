@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-developer-portal
+  title: AI Accelerators Developer Portal
+  description: Backstage-based developer portal for the AI Accelerators platform - provides service catalog, TechDocs, and API documentation
+  tags:
+    - backstage
+    - developer-portal
+    - documentation
+    - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/backstage
+    github.com/project-slug: milanstokic/ai-accelerators
+spec:
+  type: website
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators

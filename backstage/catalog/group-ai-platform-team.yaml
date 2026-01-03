@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: ai-platform-team
+  title: AI Platform Team
+  description: Team responsible for the AI Accelerators platform development and maintenance
+  tags:
+    - platform
+    - ai
+    - team
+spec:
+  type: team
+  profile:
+    displayName: AI Platform Team
+    email: ai-platform@htec.com
+  parent: platform
+  children: []
+

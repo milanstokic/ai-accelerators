@@ -1,0 +1,167 @@
+app:
+  title: AI Accelerators Developer Portal
+  baseUrl: http://localhost:3000
+  # Ensure frontend can connect to backend
+  support:
+    url: https://github.com/htec/ai-accelerators/issues
+    items:
+      - title: GitHub Issues
+        url: https://github.com/htec/ai-accelerators/issues
+      - title: Repository
+        url: https://github.com/htec/ai-accelerators
+
+organization:
+  name: HTEC AI Platform
+
+backend:
+  # Used for enabling authentication, secret is shared by all backend plugins
+  # See https://backstage.io/docs/auth/service-to-service-auth for
+  # information on the format
+  # auth:
+  #   keys:
+  #     - secret: ${BACKEND_SECRET}
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+    # Uncomment the following host directive to bind to specific interfaces
+    # host: 127.0.0.1
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+    # Allow connections to localhost for development
+    default-src: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'http:', 'https:', 'data:', 'blob:']
+    # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
+    # Default Helmet Content-Security-Policy values can be removed by setting the key to false
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  # This is for local development only, it is not recommended to use this in production
+  # The production database configuration is stored in app-config.production.yaml
+  database:
+    client: better-sqlite3
+    connection: ':memory:'
+  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+  # Allow reading from local file system and GitHub for TechDocs
+  # Note: This is a security setting - only use for trusted local development
+  reading:
+    allow:
+      - host: localhost
+      - host: 127.0.0.1
+      - host: github.com
+
+integrations:
+  # GitHub integration
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+    ### Example for how to add your GitHub Enterprise instance using the API:
+    # - host: ghe.example.net
+    #   apiBaseUrl: https://ghe.example.net/api/v3
+    #   token: ${GHE_TOKEN}
+
+proxy:
+  ### Example for how to add a proxy endpoint for the frontend.
+  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
+  # endpoints:
+  #   '/test':
+  #     target: 'https://example.com'
+  #     changeOrigin: true
+
+# Reference documentation http://backstage.io/docs/features/techdocs/configuration
+# Note: After experimenting with basic setup, use CI/CD to generate docs
+# and an external cloud storage when deploying TechDocs for production use-case.
+# https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
+techdocs:
+  builder: 'external' # Don't build automatically - serve pre-built docs only
+  generator:
+    runIn: 'local' # Used when building manually with build-techdocs.sh
+  publisher:
+    type: 'local' # Serves from node_modules/@backstage/plugin-techdocs-backend/static/docs/
+  legacyUseCaseSensitiveTripletPaths: false
+
+auth:
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  providers:
+    # See https://backstage.io/docs/auth/guest/provider
+    guest: {}
+
+scaffolder:
+  # see https://backstage.io/docs/features/software-templates/configuration for software template options
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
+    # Example entities (for testing - can remove later)
+    - type: file
+      target: ../../examples/entities.yaml
+    # Template disabled - scaffolder plugins not enabled (isolated-vm build issue)
+    # - type: file
+    #   target: ../../examples/template/template.yaml
+    #   rules:
+    #     - allow: [Template]
+    - type: file
+      target: ../../examples/org.yaml
+      rules:
+        - allow: [User, Group]
+    
+    # Platform entities (Group and Systems)
+    - type: file
+      target: ../../catalog/group-ai-platform-team.yaml
+      rules:
+        - allow: [Group]
+    - type: file
+      target: ../../catalog/system-ai-accelerators-sdk.yaml
+      rules:
+        - allow: [System]
+    - type: file
+      target: ../../catalog/system-ai-accelerators.yaml
+      rules:
+        - allow: [System]
+    - type: file
+      target: ../../catalog/system-ai-accelerators-infrastructure.yaml
+      rules:
+        - allow: [System]
+    
+    # Templates - using GitHub URLs
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/templates/rag-api/catalog-info.yaml
+    # SDK Modules - using GitHub URLs
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/sdk/src/accelerators/llm/catalog-info.yaml
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/sdk/src/accelerators/vectorstore/catalog-info.yaml
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/sdk/src/accelerators/embeddings/catalog-info.yaml
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/sdk/src/accelerators/observability/catalog-info.yaml
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/sdk/src/accelerators/config/catalog-info.yaml
+    # Infrastructure Modules - using GitHub URLs
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/infra/modules/cloud-run/catalog-info.yaml
+    
+    # Backstage Developer Portal itself
+    - type: url
+      target: https://github.com/milanstokic/ai-accelerators/blob/trunk/backstage/catalog-info.yaml
+
+    ## Uncomment these lines to add more example data
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
+
+    ## Uncomment these lines to add an example org
+    # - type: url
+    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
+    #   rules:
+    #     - allow: [User, Group]
+
+kubernetes:
+  # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
+
+# see https://backstage.io/docs/permissions/getting-started for more on the permission framework
+permission:
+  # setting this to `false` will disable permissions
+  enabled: true

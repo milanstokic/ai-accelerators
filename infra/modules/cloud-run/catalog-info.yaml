@@ -10,8 +10,9 @@ metadata:
     - gcp
     - cloud-run
   annotations:
-    backstage.io/techdocs-ref: dir:./docs
-    backstage.io/source-location: url:file://../../../../infra/modules/cloud-run
+    backstage.io/techdocs-ref: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/infra/modules/cloud-run/docs
+    backstage.io/source-location: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/infra/modules/cloud-run
+    github.com/project-slug: milanstokic/ai-accelerators
 spec:
   type: terraform-module
   lifecycle: production

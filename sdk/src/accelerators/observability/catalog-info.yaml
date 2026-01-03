@@ -10,8 +10,9 @@ metadata:
     - python
     - monitoring
   annotations:
-    backstage.io/techdocs-ref: dir:../../../../docs/sdk
-    backstage.io/source-location: url:file://../../../../sdk/src/accelerators/observability
+    backstage.io/techdocs-ref: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/docs/sdk
+    backstage.io/source-location: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/sdk/src/accelerators/observability
+    github.com/project-slug: milanstokic/ai-accelerators
 spec:
   type: library
   lifecycle: production

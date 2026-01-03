@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ai-accelerators-sdk
+  title: AI Accelerators SDK
+  description: Core SDK providing unified interfaces for LLM, Vector Store, Embeddings, Observability, and Configuration
+  tags:
+    - sdk
+    - ai
+    - platform
+  annotations:
+    # Systems don't typically have TechDocs - documentation is in component entities
+spec:
+  domain: ai-platform
+  owner: ai-platform-team
+  type: sdk
+
