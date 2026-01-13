@@ -1,0 +1,173 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: rag-api-template
+  title: RAG API Application
+  description: Create a production-ready RAG (Retrieval-Augmented Generation) API with FastAPI, vector store integration, and LLM capabilities
+  tags:
+    - rag
+    - python
+    - fastapi
+    - ai
+    - recommended
+  annotations:
+    backstage.io/techdocs-ref: url:https://github.com/milanstokic/ai-accelerators/tree/trunk/templates/rag-api
+spec:
+  owner: ai-platform-team
+  type: service
+
+  parameters:
+    - title: Application Details
+      required:
+        - name
+        - description
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name for your RAG API application
+          ui:autofocus: true
+          ui:options:
+            rows: 1
+          pattern: '^[a-z0-9-]+$'
+          maxLength: 50
+        description:
+          title: Description
+          type: string
+          description: A brief description of what this RAG application will do
+          ui:options:
+            rows: 3
+        owner:
+          title: Owner
+          type: string
+          description: Owner team of this application
+          default: ai-platform-team
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+
+    - title: LLM Configuration
+      required:
+        - llmProvider
+      properties:
+        llmProvider:
+          title: LLM Provider
+          type: string
+          description: Choose your LLM provider
+          default: anthropic
+          enum:
+            - anthropic
+            - openai
+            - google
+          enumNames:
+            - Anthropic Claude
+            - OpenAI GPT
+            - Google Gemini
+        llmModel:
+          title: LLM Model (optional)
+          type: string
+          description: Specific model to use (leave empty for default)
+          default: ''
+
+    - title: Vector Store Configuration
+      properties:
+        vectorStore:
+          title: Vector Store
+          type: string
+          description: Choose your vector store
+          default: qdrant
+          enum:
+            - qdrant
+            - pinecone
+            - chromadb
+          enumNames:
+            - Qdrant (Recommended)
+            - Pinecone
+            - ChromaDB (Local)
+        collectionName:
+          title: Collection Name
+          type: string
+          description: Name for the vector collection
+          default: documents
+          pattern: '^[a-z0-9_-]+$'
+
+    - title: Embedding Configuration
+      properties:
+        embeddingProvider:
+          title: Embedding Provider
+          type: string
+          description: Choose your embedding provider
+          default: openai
+          enum:
+            - openai
+            - voyage
+            - cohere
+          enumNames:
+            - OpenAI Embeddings
+            - Voyage AI
+            - Cohere Embed
+        embeddingModel:
+          title: Embedding Model
+          type: string
+          description: Embedding model to use
+          default: text-embedding-3-small
+
+    - title: Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+
+  steps:
+    - id: fetch-base
+      name: Fetch Base Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          llmProvider: ${{ parameters.llmProvider }}
+          llmModel: ${{ parameters.llmModel }}
+          vectorStore: ${{ parameters.vectorStore }}
+          collectionName: ${{ parameters.collectionName }}
+          embeddingProvider: ${{ parameters.embeddingProvider }}
+          embeddingModel: ${{ parameters.embeddingModel }}
+          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        allowedHosts:
+          - github.com
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+        repoVisibility: private
+
+    - id: register
+      name: Register in Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in Catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
+      - title: Documentation
+        icon: docs
+        url: /docs/default/component/${{ parameters.name }}

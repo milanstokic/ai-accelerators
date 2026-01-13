@@ -99,16 +99,18 @@ catalog:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, System, API, Resource, Location, Template]
   locations:
     # Example entities (for testing - can remove later)
     - type: file
       target: ../../examples/entities.yaml
-    # Template disabled - scaffolder plugins not enabled (isolated-vm build issue)
-    # - type: file
-    #   target: ../../examples/template/template.yaml
-    #   rules:
-    #     - allow: [Template]
+    
+    # RAG API Scaffolder Template
+    - type: file
+      target: ../templates/rag-api/template.yaml
+      rules:
+        - allow: [Template]
+    
     - type: file
       target: ../../examples/org.yaml
       rules:

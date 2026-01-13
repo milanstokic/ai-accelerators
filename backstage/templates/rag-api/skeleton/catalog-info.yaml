@@ -1,0 +1,57 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  title: ${{ values.name | capitalize }}
+  description: ${{ values.description }}
+  tags:
+    - rag
+    - python
+    - fastapi
+    - ai
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: ${{ values.destination.owner }}/${{ values.destination.repo }}
+spec:
+  type: service
+  lifecycle: production
+  owner: ${{ values.owner }}
+  system: ai-accelerators
+  providesApis:
+    - ${{ values.name }}-api
+  dependsOn:
+    - component:accelerators-llm
+    - component:accelerators-vectorstore
+    - component:accelerators-embeddings
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{ values.name }}-api
+  title: ${{ values.name | capitalize }} API
+  description: RAG API endpoints for ${{ values.name }}
+spec:
+  type: openapi
+  lifecycle: production
+  owner: ${{ values.owner }}
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: ${{ values.name | capitalize }} API
+      version: 1.0.0
+    paths:
+      /query:
+        post:
+          summary: Query the knowledge base
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    query:
+                      type: string
+      /ingest:
+        post:
+          summary: Ingest content into the knowledge base
