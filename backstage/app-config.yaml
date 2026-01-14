@@ -107,7 +107,7 @@ catalog:
     
     # RAG API Scaffolder Template
     - type: file
-      target: ../templates/rag-api/template.yaml
+      target: ../../templates/rag-api/template.yaml
       rules:
         - allow: [Template]
     
