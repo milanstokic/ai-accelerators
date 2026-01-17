@@ -67,3 +67,5 @@ This template depends on the following AI Accelerators SDK modules:
 
 Part of the AI Accelerators platform by HTEC.
 
+
+

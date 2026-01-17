@@ -76,3 +76,5 @@ echo ""
 echo "Storage directory: $STORAGE_DIR"
 ls -la "$STORAGE_DIR/default/"
 
+
+

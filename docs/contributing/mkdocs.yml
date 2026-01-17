@@ -1,0 +1,15 @@
+site_name: Contributor Guide
+site_description: Guidelines for contributing to the AI Accelerators platform
+site_url: https://github.com/htec/ai-accelerators
+
+nav:
+  - Home: index.md
+  - Development Setup: development-setup.md
+  - Coding Standards: coding-standards.md
+  - Testing Guide: testing-guide.md
+  - Documentation Guide: documentation-guide.md
+  - Pull Request Guide: pull-request-guide.md
+  - Release Process: release-process.md
+
+plugins:
+  - techdocs-core

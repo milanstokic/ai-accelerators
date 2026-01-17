@@ -63,3 +63,5 @@ module "rag_api" {
 - Terraform >= 1.5.0
 - Google Cloud Provider >= 5.0
 
+
+

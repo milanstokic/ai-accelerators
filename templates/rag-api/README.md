@@ -75,3 +75,5 @@ This is a minimal viable version. Full features include:
 - Embedding generation
 - Advanced retrieval strategies
 
+
+

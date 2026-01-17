@@ -100,3 +100,5 @@ export $(cat .env | xargs)
 - Cloud: `https://your-instance.qdrant.io`
 - API Key required for cloud instances
 
+
+

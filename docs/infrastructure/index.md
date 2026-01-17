@@ -36,3 +36,5 @@ terraform apply
 
 Part of the AI Accelerators platform by HTEC.
 
+
+

@@ -149,3 +149,5 @@ await vector_store.create_collection("documents", dimension=1536)
 - Open GitHub issue
 - Check logs for detailed error messages
 
+
+

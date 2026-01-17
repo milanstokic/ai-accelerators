@@ -32,3 +32,5 @@ class SearchResult(BaseModel):
     document: Document = Field(..., description="Matched document")
     score: float = Field(..., description="Similarity score")
 
+
+

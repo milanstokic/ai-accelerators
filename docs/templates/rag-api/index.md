@@ -61,3 +61,5 @@ Client → FastAPI → Vector Store (Qdrant)
 - [Quickstart Guide](quickstart.md)
 - [First RAG App](../../getting-started/first-rag-app.md)
 
+
+

@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: contributor-guide
+  title: Contributor Guide
+  description: Comprehensive guidelines for contributing to the AI Accelerators platform - includes development setup, coding standards, testing, documentation, and release processes
+  tags:
+    - documentation
+    - contributing
+    - guidelines
+    - onboarding
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: htec/ai-accelerators
+spec:
+  type: documentation
+  lifecycle: production
+  owner: ai-platform-team
+  system: ai-accelerators

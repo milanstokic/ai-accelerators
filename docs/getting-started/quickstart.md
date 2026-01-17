@@ -96,3 +96,5 @@ terraform apply
 - Ensure SDK is installed: `pip install -e ../sdk`
 - Check Python version: `python --version` (should be 3.11+)
 
+
+

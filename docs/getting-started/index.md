@@ -24,3 +24,5 @@ The AI Accelerators platform provides:
 2. Follow the [Quickstart](quickstart.md) to deploy your first app
 3. Explore [Templates](../templates/) for more application patterns
 
+
+
