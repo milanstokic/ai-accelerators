@@ -26,3 +26,6 @@ export const aiChatbotPlugin = createPlugin({
 
 // Export the sidebar component
 export { AiChatbotSidebar } from './components/ChatPanel';
+
+// Export the AI search box component for homepage integration
+export { AiSearchBox } from './components/AiSearchBox';

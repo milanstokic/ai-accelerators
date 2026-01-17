@@ -24,8 +24,6 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
-import { HomePage } from './components/home';
-import { AiChatbotSidebar } from '@internal/plugin-ai-chatbot';
 
 import {
   AlertDisplay,
@@ -39,6 +37,8 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { NotificationsPage } from '@backstage/plugin-notifications';
 import { SignalsDisplay } from '@backstage/plugin-signals';
+import { HomePage } from './components/home';
+import { AiChatbotSidebar } from '@internal/plugin-ai-chatbot';
 
 const app = createApp({
   apis,

@@ -1,5 +1,5 @@
 app:
-  title: AI Accelerators Developer Portal
+  title: HTEC AI Platform
   baseUrl: http://localhost:3000
   # Ensure frontend can connect to backend
   support:

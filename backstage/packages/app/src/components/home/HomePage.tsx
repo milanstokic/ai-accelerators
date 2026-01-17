@@ -1,10 +1,8 @@
 import React from 'react';
-import { makeStyles, Grid, Typography, Card, CardContent, CardActions, Button, Chip, Box, InputBase } from '@material-ui/core';
+import { makeStyles, Grid, Typography, Card, CardContent, CardActions, Button, Chip, Box } from '@material-ui/core';
 import { Page, Content, InfoCard, Header } from '@backstage/core-components';
-import { useNavigate } from 'react-router-dom';
 
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import SearchIcon from '@material-ui/icons/Search';
 import CategoryIcon from '@material-ui/icons/Category';
 import CodeIcon from '@material-ui/icons/Code';
 import BuildIcon from '@material-ui/icons/Build';
@@ -12,35 +10,9 @@ import StorageIcon from '@material-ui/icons/Storage';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import GroupIcon from '@material-ui/icons/Group';
 
+import { AiSearchBox } from '@internal/plugin-ai-chatbot';
+
 const useStyles = makeStyles(theme => ({
-  searchBar: {
-    display: 'flex',
-    alignItems: 'center',
-    maxWidth: '600px',
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
-    padding: '12px 20px',
-    borderRadius: '50px',
-    margin: theme.spacing(2, 'auto'),
-    cursor: 'pointer',
-    transition: 'box-shadow 0.2s ease-in-out',
-    '&:hover': {
-      boxShadow: theme.shadows[4],
-    },
-  },
-  searchIcon: {
-    color: theme.palette.text.secondary,
-    marginRight: theme.spacing(1.5),
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: '1rem',
-    color: theme.palette.text.primary,
-    '&::placeholder': {
-      color: theme.palette.text.secondary,
-    },
-  },
   welcomeContainer: {
     textAlign: 'center',
     marginBottom: theme.spacing(4),
@@ -210,27 +182,14 @@ export const HomePage = () => {
     },
   ];
 
-  const navigate = useNavigate();
-  
-  const handleSearchClick = () => {
-    navigate('/search');
-  };
-
-  const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      const query = (event.target as HTMLInputElement).value;
-      navigate(`/search?query=${encodeURIComponent(query)}`);
-    }
-  };
-
   return (
     <Page themeId="home">
-      <Header title="AI Accelerators Platform" subtitle="Your gateway to building intelligent applications faster" />
+      <Header title="HTEC AI Platform" subtitle="Your gateway to building intelligent applications faster" />
       <Content>
         {/* Welcome Section */}
         <div className={classes.welcomeContainer}>
           <Typography variant="h3" className={classes.welcomeTitle}>
-            Welcome to the AI Accelerators Developer Portal
+            Welcome to the HTEC AI Platform
           </Typography>
           <Typography variant="body1" className={classes.welcomeSubtitle}>
             Build production-ready AI applications in days, not months. Discover templates, SDK modules, 
@@ -239,16 +198,11 @@ export const HomePage = () => {
           </Typography>
         </div>
 
-        {/* Search Bar */}
-        <div className={classes.searchBar} onClick={handleSearchClick} role="button" tabIndex={0}>
-          <SearchIcon className={classes.searchIcon} />
-          <InputBase
-            placeholder="Search docs, components, APIs..."
-            className={classes.searchInput}
-            onKeyDown={handleSearchKeyDown}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
+        {/* AI-Powered Search */}
+        <AiSearchBox 
+          placeholder="Ask AI anything about the platform..."
+          showSuggestions
+        />
 
           {/* Getting Started Highlight */}
           <Box className={classes.highlightBox}>
@@ -291,7 +245,7 @@ export const HomePage = () => {
           <Box className={classes.quickLinksSection}>
             <InfoCard title="About the Platform" icon={<GroupIcon />}>
               <Typography variant="body1" paragraph>
-                The AI Accelerators Platform is maintained by the <strong>AI Platform Team</strong>. 
+                The HTEC AI Platform is maintained by the <strong>AI Platform Team</strong>. 
                 Our mission is to democratize AI development by providing production-ready components, 
                 best practices, and comprehensive documentation.
               </Typography>

@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: backstage-developer-portal
-  title: AI Accelerators Developer Portal
+  title: HTEC AI Platform
   description: Backstage-based developer portal for the AI Accelerators platform - provides service catalog, TechDocs, and API documentation
   tags:
     - backstage

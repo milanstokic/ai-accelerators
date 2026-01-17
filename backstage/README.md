@@ -1,4 +1,4 @@
-# AI Accelerators Developer Portal
+# HTEC AI Platform
 
 Spotify Backstage instance for the AI Accelerators platform, configured to use local file paths.
 

@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: ai-accelerators
-  title: AI Accelerators Platform
+  title: HTEC AI Platform
   description: Complete AI Accelerators platform including templates, SDK, and infrastructure components
   tags:
     - platform
@@ -14,4 +14,3 @@ spec:
   domain: ai-platform
   owner: ai-platform-team
   type: platform
-
