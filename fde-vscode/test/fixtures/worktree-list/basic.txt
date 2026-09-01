@@ -1,0 +1,21 @@
+worktree /home/dev/proj
+HEAD 1111111111111111111111111111111111111111
+branch refs/heads/main
+
+worktree /home/dev/proj-feat-search
+HEAD 2222222222222222222222222222222222222222
+branch refs/heads/feat/search
+
+worktree /home/dev/proj-hotfix
+HEAD 3333333333333333333333333333333333333333
+detached
+locked working on prod incident
+
+worktree /home/dev/proj-gone
+HEAD 4444444444444444444444444444444444444444
+branch refs/heads/old
+prunable gitdir file points to non-existent location
+
+worktree /home/dev/proj.git
+bare
+

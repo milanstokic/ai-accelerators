@@ -1,0 +1,370 @@
+{
+  "name": "fde-vscode",
+  "displayName": "FDE - Forward Deployed Engineering",
+  "description": "Worktrees, Claude Code sessions, workflow skills, and progress for forward deployed engineers, in one sidebar.",
+  "version": "0.1.0",
+  "publisher": "fde",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milanstokic/ai-accelerators.git",
+    "directory": "fde-vscode"
+  },
+  "private": true,
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "SCM Providers"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "fde",
+          "title": "FDE",
+          "icon": "media/fde.svg"
+        }
+      ]
+    },
+    "views": {
+      "fde": [
+        {
+          "id": "fde.worktrees",
+          "name": "Branches & Worktrees"
+        },
+        {
+          "id": "fde.sessions",
+          "name": "Sessions"
+        },
+        {
+          "id": "fde.skills",
+          "name": "Skills"
+        },
+        {
+          "id": "fde.progress",
+          "name": "Progress"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "fde.worktrees",
+        "contents": "Open a folder inside a git repository to see its worktrees.\n[Open Folder](command:vscode.openFolder)"
+      },
+      {
+        "view": "fde.sessions",
+        "contents": "No Claude Code sessions found for this repository.\n[Start a session](command:fde.session.start)"
+      },
+      {
+        "view": "fde.skills",
+        "contents": "No skills found. Add a `.claude/skills/<name>/SKILL.md` or `.claude/commands/<name>.md` to this repository."
+      },
+      {
+        "view": "fde.progress",
+        "contents": "Add a `.claude/fde-workflow.yaml` to define phases and a checklist.\n[Create example workflow](command:fde.workflow.createExample)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "fde.refresh",
+        "title": "Refresh",
+        "category": "FDE",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "fde.worktree.add",
+        "title": "Add Worktree\u2026",
+        "category": "FDE",
+        "icon": "$(add)"
+      },
+      {
+        "command": "fde.worktree.open",
+        "title": "Open in New Window",
+        "category": "FDE",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "fde.worktree.remove",
+        "title": "Remove Worktree",
+        "category": "FDE",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "fde.worktree.copyPath",
+        "title": "Copy Path",
+        "category": "FDE"
+      },
+      {
+        "command": "fde.worktree.openPr",
+        "title": "Open Pull Request",
+        "category": "FDE",
+        "icon": "$(git-pull-request)"
+      },
+      {
+        "command": "fde.session.start",
+        "title": "Start Claude Code Session",
+        "category": "FDE",
+        "icon": "$(play)"
+      },
+      {
+        "command": "fde.session.resume",
+        "title": "Resume Session",
+        "category": "FDE",
+        "icon": "$(debug-continue)"
+      },
+      {
+        "command": "fde.session.openTranscript",
+        "title": "Open Transcript",
+        "category": "FDE",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "fde.session.copyId",
+        "title": "Copy Session ID",
+        "category": "FDE"
+      },
+      {
+        "command": "fde.skill.run",
+        "title": "Run Skill",
+        "category": "FDE",
+        "icon": "$(run)"
+      },
+      {
+        "command": "fde.skill.open",
+        "title": "Open Skill File",
+        "category": "FDE",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "fde.workflow.setPhase",
+        "title": "Set Workflow Phase\u2026",
+        "category": "FDE",
+        "icon": "$(milestone)"
+      },
+      {
+        "command": "fde.workflow.createExample",
+        "title": "Create Example Workflow File",
+        "category": "FDE"
+      },
+      {
+        "command": "fde.hooks.install",
+        "title": "Install Claude Code Hooks",
+        "category": "FDE"
+      },
+      {
+        "command": "fde.hooks.uninstall",
+        "title": "Uninstall Claude Code Hooks",
+        "category": "FDE"
+      },
+      {
+        "command": "fde.showLog",
+        "title": "Show Log",
+        "category": "FDE"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "fde.worktree.open",
+          "when": "false"
+        },
+        {
+          "command": "fde.worktree.remove",
+          "when": "false"
+        },
+        {
+          "command": "fde.worktree.copyPath",
+          "when": "false"
+        },
+        {
+          "command": "fde.worktree.openPr",
+          "when": "false"
+        },
+        {
+          "command": "fde.session.resume",
+          "when": "false"
+        },
+        {
+          "command": "fde.session.openTranscript",
+          "when": "false"
+        },
+        {
+          "command": "fde.session.copyId",
+          "when": "false"
+        },
+        {
+          "command": "fde.skill.run",
+          "when": "false"
+        },
+        {
+          "command": "fde.skill.open",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "fde.refresh",
+          "when": "view =~ /^fde\\./",
+          "group": "navigation@9"
+        },
+        {
+          "command": "fde.worktree.add",
+          "when": "view == fde.worktrees",
+          "group": "navigation@1"
+        },
+        {
+          "command": "fde.session.start",
+          "when": "view == fde.sessions",
+          "group": "navigation@1"
+        },
+        {
+          "command": "fde.workflow.setPhase",
+          "when": "view == fde.progress",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "fde.session.start",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/",
+          "group": "inline@1"
+        },
+        {
+          "command": "fde.worktree.open",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/ && viewItem =~ /other/",
+          "group": "inline@2"
+        },
+        {
+          "command": "fde.worktree.openPr",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/ && viewItem =~ /pr/",
+          "group": "inline@3"
+        },
+        {
+          "command": "fde.worktree.open",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/",
+          "group": "1_nav@1"
+        },
+        {
+          "command": "fde.worktree.copyPath",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/",
+          "group": "1_nav@2"
+        },
+        {
+          "command": "fde.worktree.remove",
+          "when": "view == fde.worktrees && viewItem =~ /worktree/ && viewItem =~ /other/",
+          "group": "9_danger@1"
+        },
+        {
+          "command": "fde.session.resume",
+          "when": "view == fde.sessions && viewItem == session",
+          "group": "inline@1"
+        },
+        {
+          "command": "fde.session.openTranscript",
+          "when": "view == fde.sessions && viewItem == session",
+          "group": "inline@2"
+        },
+        {
+          "command": "fde.session.copyId",
+          "when": "view == fde.sessions && viewItem == session",
+          "group": "1_nav@1"
+        },
+        {
+          "command": "fde.session.start",
+          "when": "view == fde.sessions && viewItem == sessionGroup",
+          "group": "inline@1"
+        },
+        {
+          "command": "fde.skill.run",
+          "when": "view == fde.skills && viewItem == skill",
+          "group": "inline@1"
+        },
+        {
+          "command": "fde.skill.open",
+          "when": "view == fde.skills && viewItem == skill",
+          "group": "inline@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "FDE",
+      "properties": {
+        "fde.claudeHome": {
+          "type": "string",
+          "default": "~/.claude",
+          "description": "Claude Code home directory. Override for testing or non-standard installs."
+        },
+        "fde.claudeCommand": {
+          "type": "string",
+          "default": "claude",
+          "description": "Command used to launch Claude Code in a terminal."
+        },
+        "fde.sessions.activeWindowSeconds": {
+          "type": "number",
+          "default": 120,
+          "description": "A session is shown as active when its transcript changed within this many seconds."
+        },
+        "fde.sessions.maxAgeDays": {
+          "type": "number",
+          "default": 30,
+          "description": "Sessions older than this are not listed."
+        },
+        "fde.worktrees.defaultParentDir": {
+          "type": "string",
+          "default": "..",
+          "description": "Directory (relative to the main worktree) where new worktrees are created."
+        },
+        "fde.github.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Look up pull requests and check status for each branch via GitHub."
+        },
+        "fde.skills.showUserScope": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include skills from the user-level ~/.claude/skills and plugins."
+        }
+      }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": "fde-workflow.json",
+        "url": "./schemas/fde-workflow.schema.json"
+      }
+    ],
+    "yamlValidation": [
+      {
+        "fileMatch": "fde-workflow.yaml",
+        "url": "./schemas/fde-workflow.schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm run test && npm run build",
+    "package": "npm run check && vsce package --no-dependencies",
+    "demo": "node scripts/make-demo.mjs",
+    "vscode:prepublish": "npm run build"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.1.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

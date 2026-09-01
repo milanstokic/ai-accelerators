@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Created:** 2026-09-01  
-**Status:** Planning
+**Status:** In Progress — Phases 0–4 implemented in `fde-vscode/` (see `fde-vscode/TESTING.md`); Phase 5 (hardening, release, dogfooding) pending
 
 ---
 
