@@ -9,3 +9,5 @@ esbuild.mjs
 vitest.config.ts
 tsconfig.json
 **/*.map
+.gitignore
+demo/
